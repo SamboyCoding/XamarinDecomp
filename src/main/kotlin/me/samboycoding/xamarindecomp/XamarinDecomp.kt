@@ -58,7 +58,7 @@ fun main(args: Array<String>) {
         return
     }
 
-    val file = File(args[0])
+    val file = File(args[0]).canonicalFile
     if (!file.exists()) {
         println("Specified file doesn't exist")
         return

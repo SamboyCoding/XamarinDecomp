@@ -25,13 +25,13 @@ class ElfFileHeader {
     val sectionHeaderTable = ArrayList<SectionTableEntry>()
 
     constructor(bytes: ByteArray) {
-        println("\t===SO File Header===")
+        println("\t\t===SO File Header===")
 
         is64Bit = bytes[4].toInt() == 2
-        println("\tArch: ${if (is64Bit) "64" else "32"}-bit")
+        println("\t\tArch: ${if (is64Bit) "64" else "32"}-bit")
 
         littleEndian = bytes[5].toInt() == 1
-        println("\tEndianness: ${if (littleEndian) "little" else "big"}")
+        println("\t\tEndianness: ${if (littleEndian) "little" else "big"}")
 
         entryPointAddress = bytes.readAddress(0x18, is64Bit, littleEndian)
         programHeaderTableStart = bytes.readAddress(if(is64Bit) 0x20 else 0x1C, is64Bit, littleEndian)
